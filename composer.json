@@ -1,0 +1,21 @@
+{
+    "name": "kareem3d/path-manager",
+    "description": "Easy way to manage files and directories using urls.",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Kareem Mohamed",
+            "email": "a.kareem_3d@yahoo.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">5.2.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "PathManager": "src/"
+        }
+    },
+    "license": "Apache-2.0"
+}
