@@ -53,7 +53,7 @@ abstract class Path {
 	 * @throws PathException
 	 * @return string
 	 */
-	protected static function getBasePath()
+	public static function getBasePath()
 	{
 		if(! static::$basePath) throw new PathException("Path class not initialized.");
 
@@ -66,7 +66,7 @@ abstract class Path {
 	 * @throws PathException
 	 * @return string
 	 */
-	protected static function getBaseUrl()
+	public static function getBaseUrl()
 	{
 		if(! static::$baseUrl) throw new PathException("Path class not initialized.");
 
@@ -116,7 +116,7 @@ abstract class Path {
 	 */
 	public static function convertToPath( $url )
 	{
-		return str_replace(static::getBaseUrl(), static::getBasePath(), $url);
+		return static::prepare(str_replace(static::getBaseUrl(), static::getBasePath(), $url));
 	}
 
 	/**
@@ -127,7 +127,7 @@ abstract class Path {
 	 */
 	public static function convertToUrl( $path )
 	{
-		return str_replace(static::getBasePath(), static::getBaseUrl(), static::preapre($path));
+		return str_replace('\\', '/', str_replace(static::getBasePath(), static::getBaseUrl(), static::prepare($path)));
 	}
 
 	/**
