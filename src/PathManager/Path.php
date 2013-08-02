@@ -62,7 +62,7 @@ abstract class Path {
 
 	/**
 	 * Get base url.
-	 * 
+	 *
 	 * @throws PathException
 	 * @return string
 	 */
@@ -72,6 +72,14 @@ abstract class Path {
 
 		return static::$baseUrl;
 	}
+
+    /**
+     * @return Path
+     */
+    public static function makeFromBase()
+    {
+        return static::make(static::getBasePath());
+    }
 
 	/**
 	 * Make from given path.
@@ -140,11 +148,12 @@ abstract class Path {
 		return DIRECTORY_SEPARATOR;
 	}
 
-	/**
-	 * Prepare path.
-	 *
-	 * @return string
-	 */
+    /**
+     * Prepare path.
+     *
+     * @param $path
+     * @return string
+     */
 	protected static function prepare( $path )
 	{
 		$path = str_replace('\\', static::ds(), $path);
@@ -196,20 +205,20 @@ abstract class Path {
 		return $this->path;
 	}
 
-	/**
-	 * Copy this file or directory to the given directory.
-	 *
-	 * @param  string $path
-	 * @return void
-	 */
+    /**
+     * Copy this file or directory to the given directory.
+     *
+     * @param \PathManager\Path $path
+     * @return void
+     */
 	public abstract function copy( Path $path );
 
-	/**
-	 * Move this file or directory to the given directory.
-	 *
-	 * @param  string $directory
-	 * @return void
-	 */
+    /**
+     * Move this file or directory to the given directory.
+     *
+     * @param Path $path
+     * @return void
+     */
 	public abstract function move( Path $path );
 
 	/**
@@ -223,7 +232,7 @@ abstract class Path {
 	 * Make sure this path exists.
 	 * This method will create all directories along the way to 
 	 * make sure this directory does exist.
-	 * This method might take some time.. Don't use alot!
+	 * This method might take some time.. Don't use a lot!
 	 *
 	 * @throws PathException
 	 * @param  int $permissions
