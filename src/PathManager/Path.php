@@ -229,6 +229,13 @@ abstract class Path {
 	public abstract function delete();
 
 	/**
+	 * Make this path unique by changing its name if it exists.
+	 *
+	 * @return void
+	 */
+	public abstract function makeUnique();
+
+	/**
 	 * Make sure this path exists.
 	 * This method will create all directories along the way to 
 	 * make sure this directory does exist.

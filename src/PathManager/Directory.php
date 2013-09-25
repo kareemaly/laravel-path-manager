@@ -128,4 +128,17 @@ class Directory extends Path {
 
 		return $this;
 	}
+
+    /**
+     * Make this path unique by changing its name if it exists.
+     *
+     * @return void
+     */
+    public function makeUnique()
+    {
+        while(file_exists($this->path))
+        {
+            $this->path = rtrim($this->path, '\\/') . rand(0,10);
+        }
+    }
 }

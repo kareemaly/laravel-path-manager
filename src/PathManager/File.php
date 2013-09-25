@@ -62,4 +62,32 @@ class File extends Path {
 
 		return $this;
 	}
+
+	/**
+	 * Make this path unique by changing its name if it exists.
+	 *
+	 * @return void
+	 */
+	public function makeUnique()
+	{
+		if(file_exists($this->path))
+		{
+            // First get path info
+            $info = pathinfo($this->path);
+
+            // Use the directory and file name to form the full path without the extension
+            $name = $info['dirname'] . '\\' . $info['filename'];
+
+            // Get the extension
+            $ext = $info['extension'];
+
+            // If file exsists then prepend a random number.
+            while(file_exists($name . '.' . $ext))
+            {
+                $name .= rand(0, 10);
+            }
+
+            $this->path = $name . '.' . $ext;
+		}
+	}
 }
